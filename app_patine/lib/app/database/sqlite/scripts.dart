@@ -1,6 +1,6 @@
 final createTable = '''
   CREATE TABLE usuario(
-    id INT NOT NULL PRIMARY KEY
+    id INT PRIMARY KEY
     , nome VARCHAR(255) NOT NULL
     , cpf CHAR(11) NOT NULL
     , email VARCHAR(255) NOT NULL
