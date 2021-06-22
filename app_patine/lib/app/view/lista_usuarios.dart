@@ -1,14 +1,12 @@
 //@dart=2.9
+import 'package:app_patine/app/database/dao/usuario_dao_impl.dart';
+import 'package:app_patine/app/domain/entities/usuario.dart';
 import 'package:app_patine/app/my_app.dart';
 import 'package:flutter/material.dart';
-import 'package:app_patine/app/database/sqlite/connection.dart';
-import 'package:sqflite/sqflite.dart';
 
 class ListaUsuarios extends StatelessWidget {
-  Future<List<Map<String, dynamic>>> _listar() async {
-    Database db = await Connection.get();
-
-    return db.query('usuario');
+  Future<List<Usuario>> _listar() async {
+    return UsuarioDAOImpl().find();
   }
 
   @override
@@ -17,14 +15,14 @@ class ListaUsuarios extends StatelessWidget {
         future: _listar(),
         builder: (context, futuro) {
           if (futuro.hasData) {
-            var lista = futuro.data;
+            List<Usuario> lista = futuro.data;
             return Scaffold(
               appBar: AppBar(
                 title: Text('Lista de Usuários'),
                 actions: [
                   IconButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed(MyApp.FORM_USUARIO);
+                        Navigator.of(context).pushNamed(MyApp.LISTA_EXERCICIOS);
                       },
                       icon: Icon(Icons.add))
                 ],
@@ -34,9 +32,9 @@ class ListaUsuarios extends StatelessWidget {
                 itemBuilder: (context, i) {
                   var usuario = lista[i];
                   return ListTile(
-                    title: Text(usuario['nome']),
+                    title: Text(usuario.nome),
                     subtitle:
-                        Text(usuario['tipo'] == 'A' ? 'Aprendiz' : 'Treinador'),
+                        Text(usuario.tipo == 'A' ? 'Aprendiz' : 'Treinador'),
                     trailing: Container(
                       width: 100,
                       child: Row(

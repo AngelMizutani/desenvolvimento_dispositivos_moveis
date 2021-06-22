@@ -29,3 +29,22 @@ final insertAprendiz2 = '''
   INSERT INTO usuario(nome, cpf, email, login, senha, tipo)
   VALUES('Mateus', '15947826300', 'mateus@email.com', 'mateus', '12345', 'A')
 ''';
+
+final createTableExercicios = '''
+    CREATE TABLE exercicios(
+      id INT PRIMARY KEY
+      , nome VARCHAR (255) NOT NULL
+      , descricao VARCHAR (1000) NOT NULL
+      , treinador_id INT NOT NULL
+      , FOREIGN KEY (treinador_id) REFERENCES usuario (id)
+    )
+''';
+final insertExercicio1 = '''
+  INSERT INTO exercicios(nome, descricao, treinador_id)
+  VALUES ('Limões', 'Desenhe círculos com os patins', 1)
+''';
+
+final insertExercicio2 = '''
+  INSERT INTO exercicios(nome, descricao, treinador_id)
+  VALUES ('Freio em Cunha com Passos', 'Faça uma abertura de pernas com o dobro do tamanho dos ombros, e vá fechando com passos', 2)
+''';

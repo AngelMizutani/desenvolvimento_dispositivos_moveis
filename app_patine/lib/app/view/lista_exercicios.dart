@@ -1,36 +1,50 @@
-import 'package:app_patine/app/my_app.dart';
+//@dart=2.9
+
+import 'package:app_patine/app/database/dao/exercicio_dao_impl.dart';
+import 'package:app_patine/app/domain/entities/exercicio.dart';
 import 'package:flutter/material.dart';
 
 class ListaExercicios extends StatelessWidget {
-  const ListaExercicios({Key? key}) : super(key: key);
+  Future<List<Exercicio>> _listar() async {
+    return ExercicioDAOImpl().find();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Lista de Exercícios para Patinação'),
-      ),
-      body: ListView(
-        children: [
-          Text(
-            'Limões',
-            style: TextStyle(fontSize: 30),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(MyApp.EXERCICIO);
-            },
-            child: Text(
-              'Ver',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-              ),
+    return FutureBuilder(
+      future: _listar(),
+      builder: (context, futuro) {
+        if (futuro.hasData) {
+          List<Exercicio> lista = futuro.data;
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Lista de Exercícios'),
             ),
-            style: TextButton.styleFrom(backgroundColor: Colors.purpleAccent),
-          )
-        ],
-      ),
+            body: ListView.builder(
+              itemCount: lista.length,
+              itemBuilder: (context, i) {
+                var exercicio = lista[i];
+                return ListTile(
+                  title: Text(exercicio.nome),
+                  subtitle: Text(exercicio.descricao),
+                  trailing: Container(
+                    width: 100,
+                    child: Row(
+                      children: [
+                        IconButton(onPressed: null, icon: Icon(Icons.thumb_up)),
+                        IconButton(
+                            onPressed: null, icon: Icon(Icons.thumb_down))
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          );
+        } else {
+          return Scaffold();
+        }
+      },
     );
   }
 }
