@@ -7,6 +7,7 @@ import 'package:sqflite/sqflite.dart';
 
 class UsuarioDAOImpl implements UsuarioDAO {
   Database _db;
+
   @override
   Future<List<Usuario>> find() async {
     _db = await Connection.get();
