@@ -1,5 +1,6 @@
 //@dart=2.9
 
+import 'package:app_patine/app/view/form_exercicio.dart';
 import 'package:app_patine/app/view/form_usuario.dart';
 import 'package:app_patine/app/view/lista_exercicios.dart';
 import 'package:app_patine/app/view/lista_usuarios.dart';
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   static const LISTA_EXERCICIOS = 'lista-exercicios';
   static const LISTA_USUARIOS = 'lista-usuarios';
   static const FORM_USUARIO = 'form-usuario';
+  static const FORM_EXERCICIO = 'form-exercicio';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,11 +23,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
       ),
       routes: {
-        HOME: (context) => ListaUsuarios(),
+        HOME: (context) => ListaExercicios(),
         EXERCICIO: (context) => VerExercicio(),
         LISTA_EXERCICIOS: (context) => ListaExercicios(),
         LISTA_USUARIOS: (context) => ListaUsuarios(),
-        FORM_USUARIO: (context) => FormUsuario()
+        FORM_USUARIO: (context) => FormUsuario(),
+        FORM_EXERCICIO: (context) => FormExercicio(),
       },
     );
   }

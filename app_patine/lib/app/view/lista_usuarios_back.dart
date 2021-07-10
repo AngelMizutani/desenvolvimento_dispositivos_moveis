@@ -15,9 +15,11 @@ abstract class _ListaUsuariosBack with Store {
   var _service = GetIt.I.get<UsuarioService>();
 
   //exibir lista de usuários
+  @observable
   Future<List<Usuario>> lista;
 
   //atualizar lista de usuarios
+  @action
   atualizarListaUsuarios([dynamic value]) {
     lista = _service.find();
   }

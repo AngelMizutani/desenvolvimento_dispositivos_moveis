@@ -10,6 +10,7 @@ class Connection {
 
     if (_db == null) {
       var path = join(await getDatabasesPath(), 'banco_usuarios');
+      //deleteDatabase(path);
       _db = await openDatabase(path, version: 1, onCreate: (db, v) {
         db.execute(createTable);
         db.execute(insertTreinador1);
@@ -25,10 +26,12 @@ class Connection {
     Database _db;
     if (_db == null) {
       var path = join(await getDatabasesPath(), 'banco_exercicios');
+      //deleteDatabase(path);
       _db = await openDatabase(path, version: 1, onCreate: (db, v) {
         db.execute(createTableExercicios);
         db.execute(insertExercicio1);
         db.execute(insertExercicio2);
+        db.execute(insertExercicio3);
       });
     }
     return _db;

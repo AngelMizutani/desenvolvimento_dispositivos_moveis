@@ -1,6 +1,6 @@
 final createTable = '''
   CREATE TABLE usuario(
-    id INT PRIMARY KEY
+    id INTEGER NOT NULL PRIMARY KEY
     , nome VARCHAR(255) NOT NULL
     , cpf CHAR(11) NOT NULL
     , email VARCHAR(255) NOT NULL
@@ -32,7 +32,7 @@ final insertAprendiz2 = '''
 
 final createTableExercicios = '''
     CREATE TABLE exercicios(
-      id INT PRIMARY KEY
+      id INTEGER NOT NULL PRIMARY KEY
       , nome VARCHAR (255) NOT NULL
       , descricao VARCHAR (1000) NOT NULL
       , treinador_id INT NOT NULL
@@ -47,4 +47,9 @@ final insertExercicio1 = '''
 final insertExercicio2 = '''
   INSERT INTO exercicios(nome, descricao, treinador_id)
   VALUES ('Freio em Cunha com Passos', 'Faça uma abertura de pernas com o dobro do tamanho dos ombros, e vá fechando com passos', 2)
+''';
+
+final insertExercicio3 = '''
+  INSERT INTO exercicios(nome, descricao, treinador_id)
+  VALUES ('Freio em T', 'Faça a posição de tesoura, com o peso 80% na perna da frente. Então vire o pé de trás transversalmente, formando um T com os patins. Arraste o patins de trás até parar por completo', 1)
 ''';

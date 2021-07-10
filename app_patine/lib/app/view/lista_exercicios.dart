@@ -1,50 +1,91 @@
 //@dart=2.9
 
-import 'package:app_patine/app/database/dao/exercicio_dao_impl.dart';
 import 'package:app_patine/app/domain/entities/exercicio.dart';
+import 'package:app_patine/app/my_app.dart';
+import 'package:app_patine/app/view/lista_exercicios_back.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class ListaExercicios extends StatelessWidget {
-  Future<List<Exercicio>> _listar() async {
-    return ExercicioDAOImpl().find();
+  final _back = ListaExerciciosBack();
+
+  Widget iconeBotaoEditar(Function onPressed) {
+    return IconButton(
+        onPressed: onPressed, icon: Icon(Icons.edit), color: Colors.yellow);
+  }
+
+  Widget iconeBotaoExcluir(BuildContext context, Function excluir) {
+    return IconButton(
+      onPressed: () {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: Text('Confirmar exclusão'),
+                  content: Text('Deseja realmente excluir esse exercício?'),
+                  actions: [
+                    TextButton(
+                        onPressed: Navigator.of(context).pop,
+                        child: Text('Não')),
+                    TextButton(onPressed: excluir, child: Text('Sim'))
+                  ],
+                ));
+      },
+      icon: Icon(Icons.delete),
+      color: Colors.red,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _listar(),
-      builder: (context, futuro) {
-        if (futuro.hasData) {
-          List<Exercicio> lista = futuro.data;
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('Lista de Exercícios'),
-            ),
-            body: ListView.builder(
-              itemCount: lista.length,
-              itemBuilder: (context, i) {
-                var exercicio = lista[i];
-                return ListTile(
-                  title: Text(exercicio.nome),
-                  subtitle: Text(exercicio.descricao),
-                  trailing: Container(
-                    width: 100,
-                    child: Row(
-                      children: [
-                        IconButton(onPressed: null, icon: Icon(Icons.thumb_up)),
-                        IconButton(
-                            onPressed: null, icon: Icon(Icons.thumb_down))
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          );
-        } else {
-          return Scaffold();
-        }
-      },
-    );
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Lista de Exercícios'),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(MyApp.FORM_EXERCICIO);
+                },
+                icon: Icon(Icons.add))
+          ],
+        ),
+        body: Observer(builder: (context) {
+          return FutureBuilder(
+              future: _back.lista,
+              builder: (context, futuro) {
+                if (!futuro.hasData) {
+                  return CircularProgressIndicator();
+                } else {
+                  List<Exercicio> lista = futuro.data;
+                  return ListView.builder(
+                    itemCount: lista.length,
+                    itemBuilder: (context, i) {
+                      var exercicio = lista[i];
+                      return ListTile(
+                        title: Text(exercicio.nome),
+                        subtitle: Text(exercicio.descricao),
+                        trailing: Container(
+                          width: 100,
+                          child: Row(
+                            children: [
+                              iconeBotaoEditar(() {
+                                _back.irParaFormExercicio(context, exercicio);
+                              }),
+                              iconeBotaoExcluir(context, () {
+                                _back.excluirExercicio(exercicio.id);
+                                Navigator.of(context).pop();
+                              })
+                              // IconButton(
+                              //     onPressed: null, icon: Icon(Icons.thumb_up)),
+                              // IconButton(
+                              //     onPressed: null, icon: Icon(Icons.thumb_down))
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                }
+              });
+        }));
   }
 }
