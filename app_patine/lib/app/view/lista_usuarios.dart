@@ -8,6 +8,32 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 class ListaUsuarios extends StatelessWidget {
   final _back = ListaUsuariosBack();
 
+  Widget iconeBotaoEditar(Function onPressed) {
+    return IconButton(
+        onPressed: onPressed, icon: Icon(Icons.edit), color: Colors.yellow);
+  }
+
+  Widget iconeBotaoExcluir(BuildContext context, Function excluir) {
+    return IconButton(
+      onPressed: () {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: Text('Confirmar exclusão'),
+                  content: Text('Deseja realmente excluir esse exercício?'),
+                  actions: [
+                    TextButton(
+                        onPressed: Navigator.of(context).pop,
+                        child: Text('Não')),
+                    TextButton(onPressed: excluir, child: Text('Sim'))
+                  ],
+                ));
+      },
+      icon: Icon(Icons.delete),
+      color: Colors.red,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +42,7 @@ class ListaUsuarios extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed(MyApp.LISTA_EXERCICIOS);
+                  Navigator.of(context).pushNamed(MyApp.FORM_USUARIO);
                 },
                 icon: Icon(Icons.add))
           ],
@@ -41,12 +67,21 @@ class ListaUsuarios extends StatelessWidget {
                             width: 100,
                             child: Row(
                               children: [
+                                iconeBotaoEditar(() {
+                                  _back.irParaFormulario(context, usuario);
+                                }),
+                                iconeBotaoExcluir(context, () {
+                                  _back.excluirUsuario(usuario.id);
+                                  Navigator.of(context).pop();
+                                })
+                                /*
                                 IconButton(
                                     onPressed: null,
                                     icon: Icon(Icons.thumb_up)),
                                 IconButton(
                                     onPressed: null,
                                     icon: Icon(Icons.thumb_down))
+                                    */
                               ],
                             )),
                       );
