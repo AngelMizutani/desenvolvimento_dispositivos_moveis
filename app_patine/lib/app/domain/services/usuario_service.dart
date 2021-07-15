@@ -42,13 +42,13 @@ class UsuarioService {
     }
   }
 
-  //cpf deve ser obrigatorio e ter 11 caracteres no máximo
+  //cpf deve ser obrigatorio e ter 14 caracteres no máximo
   validarCpf(String cpf) {
     if (cpf == null) {
       throw new DomainLayerException('CPF é obrigatório');
     }
-    if (cpf.length > 11) {
-      throw new DomainLayerException('CPF deve ter no máximo 11 caracteres');
+    if (cpf.length > 14) {
+      throw new DomainLayerException('CPF deve ter no máximo 14 caracteres');
     }
   }
 
@@ -95,7 +95,7 @@ class UsuarioService {
 
   //o tipo só pode ser T ou A
   validarTipo(String tipo) {
-    if (tipo != 'T' || tipo != 'A') {
+    if (tipo != 'T' && tipo != 'A') {
       throw new DomainLayerException('O tipo só pode ser T ou A');
     }
   }

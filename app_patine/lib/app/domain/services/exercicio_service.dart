@@ -11,6 +11,7 @@ class ExercicioService {
   save(Exercicio exercicio) {
     validarNome(exercicio.nome);
     validarDescricao(exercicio.descricao);
+    validarTreinador(exercicio.treinadorId);
     _dao.save(exercicio);
   }
 
@@ -27,7 +28,9 @@ class ExercicioService {
     var min = 3;
     var max = 255;
 
-    if (nome.length < min) {
+    if (nome == null) {
+      throw new DomainLayerException('O nome é obrigatório');
+    } else if (nome.length < min) {
       throw new DomainLayerException(
           'O nome deve ter no mínimo $min caracteres');
     } else if (nome.length > max) {
@@ -41,12 +44,21 @@ class ExercicioService {
     var min = 10;
     var max = 1000;
 
-    if (descricao.length < min) {
+    if (descricao == null) {
+      throw new DomainLayerException('A descrição é obrigatória');
+    } else if (descricao.length < min) {
       throw new DomainLayerException(
           'A descrição deve ter no mínimo $min caracteres');
     } else if (descricao.length > max) {
       throw new DomainLayerException(
           'A descrição deve ter no máximo $max caracteres');
+    }
+  }
+
+  //o treinador é obrigatório
+  validarTreinador(int idTreinador) {
+    if (idTreinador == null) {
+      throw new DomainLayerException('O treinador é obrigatório');
     }
   }
 }

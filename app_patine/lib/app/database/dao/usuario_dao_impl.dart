@@ -52,14 +52,15 @@ class UsuarioDAOImpl implements UsuarioDAO {
       ]);
     } else {
       sql =
-          'UPDATE usuario SET nome = ?, cpf = ?, email = ?, login = ?, senha = ?, tipo = ?';
+          'UPDATE usuario SET nome = ?, cpf = ?, email = ?, login = ?, senha = ?, tipo = ? WHERE id = ?';
       _db.rawUpdate(sql, [
         usuario.nome,
         usuario.cpf,
         usuario.email,
         usuario.login,
         usuario.senha,
-        usuario.tipo
+        usuario.tipo,
+        usuario.id
       ]);
     }
   }

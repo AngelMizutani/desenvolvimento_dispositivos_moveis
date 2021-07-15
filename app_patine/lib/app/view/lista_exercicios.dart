@@ -1,7 +1,6 @@
 //@dart=2.9
 
 import 'package:app_patine/app/domain/entities/exercicio.dart';
-import 'package:app_patine/app/my_app.dart';
 import 'package:app_patine/app/view/lista_exercicios_back.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -43,7 +42,7 @@ class ListaExercicios extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed(MyApp.FORM_EXERCICIO);
+                  _back.irParaFormExercicio(context);
                 },
                 icon: Icon(Icons.add))
           ],

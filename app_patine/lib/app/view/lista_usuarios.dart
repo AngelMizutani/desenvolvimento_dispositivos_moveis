@@ -20,7 +20,7 @@ class ListaUsuarios extends StatelessWidget {
             context: context,
             builder: (context) => AlertDialog(
                   title: Text('Confirmar exclusão'),
-                  content: Text('Deseja realmente excluir esse exercício?'),
+                  content: Text('Deseja realmente excluir esse usuário?'),
                   actions: [
                     TextButton(
                         onPressed: Navigator.of(context).pop,
@@ -42,7 +42,7 @@ class ListaUsuarios extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed(MyApp.FORM_USUARIO);
+                  _back.irParaFormulario(context);
                 },
                 icon: Icon(Icons.add))
           ],

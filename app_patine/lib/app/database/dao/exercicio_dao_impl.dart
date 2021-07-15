@@ -10,7 +10,7 @@ class ExercicioDAOImpl implements ExercicioDAO {
 
   @override
   Future<List<Exercicio>> find() async {
-    _db = await Connection.getExercicios();
+    _db = await Connection.get();
     List<Map<String, dynamic>> resultado = await _db.query('exercicios');
     List<Exercicio> lista = List.generate(resultado.length, (index) {
       var linha = resultado[index];
@@ -26,14 +26,14 @@ class ExercicioDAOImpl implements ExercicioDAO {
 
   @override
   remove(int id) async {
-    _db = await Connection.getExercicios();
+    _db = await Connection.get();
     var sql = 'DELETE FROM exercicios WHERE id = ?';
     _db.rawDelete(sql, [id]);
   }
 
   @override
   save(Exercicio exercicio) async {
-    _db = await Connection.getExercicios();
+    _db = await Connection.get();
     var sql;
 
     if (exercicio.id == null) {
@@ -44,9 +44,13 @@ class ExercicioDAOImpl implements ExercicioDAO {
           sql, [exercicio.nome, exercicio.descricao, exercicio.treinadorId]);
     } else {
       sql =
-          'UPDATE INTO exercicios SET nome = ?, descricao = ?, treinador_id = ?';
-      _db.rawUpdate(
-          sql, [exercicio.nome, exercicio.descricao, exercicio.treinadorId]);
+          'UPDATE exercicios SET nome = ?, descricao = ?, treinador_id = ? WHERE id = ?';
+      _db.rawUpdate(sql, [
+        exercicio.nome,
+        exercicio.descricao,
+        exercicio.treinadorId,
+        exercicio.id
+      ]);
     }
   }
 }

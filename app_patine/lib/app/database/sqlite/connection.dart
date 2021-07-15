@@ -9,7 +9,7 @@ class Connection {
     Database _db;
 
     if (_db == null) {
-      var path = join(await getDatabasesPath(), 'banco_usuarios');
+      var path = join(await getDatabasesPath(), 'banco_patine');
       //deleteDatabase(path);
       _db = await openDatabase(path, version: 1, onCreate: (db, v) {
         db.execute(createTable);
@@ -17,17 +17,6 @@ class Connection {
         db.execute(insertTreinador2);
         db.execute(insertAprendiz1);
         db.execute(insertAprendiz2);
-      });
-    }
-    return _db;
-  }
-
-  static Future<Database> getExercicios() async {
-    Database _db;
-    if (_db == null) {
-      var path = join(await getDatabasesPath(), 'banco_exercicios');
-      //deleteDatabase(path);
-      _db = await openDatabase(path, version: 1, onCreate: (db, v) {
         db.execute(createTableExercicios);
         db.execute(insertExercicio1);
         db.execute(insertExercicio2);
