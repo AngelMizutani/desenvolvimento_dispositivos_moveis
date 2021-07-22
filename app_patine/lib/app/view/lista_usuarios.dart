@@ -1,6 +1,5 @@
 //@dart=2.9
 import 'package:app_patine/app/domain/entities/usuario.dart';
-import 'package:app_patine/app/my_app.dart';
 import 'package:app_patine/app/view/lista_usuarios_back.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -61,6 +60,9 @@ class ListaUsuarios extends StatelessWidget {
                       var usuario = lista[i];
                       return ListTile(
                         title: Text(usuario.nome),
+                        onTap: () {
+                          _back.goToUserDetails(context, usuario);
+                        },
                         subtitle: Text(
                             usuario.tipo == 'A' ? 'Aprendiz' : 'Treinador'),
                         trailing: Container(

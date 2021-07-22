@@ -4,13 +4,8 @@ import 'package:app_patine/app/domain/entities/usuario.dart';
 import 'package:app_patine/app/domain/services/usuario_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mobx/mobx.dart';
 
-part 'form_usuario_back.g.dart';
-
-class FormUsuarioBack = _FormUsuarioBack with _$FormUsuarioBack;
-
-abstract class _FormUsuarioBack with Store {
+class FormUsuarioBack {
   Usuario usuario;
   var _service = GetIt.I.get<UsuarioService>();
   bool _nomeIsValid;
@@ -20,7 +15,6 @@ abstract class _FormUsuarioBack with Store {
   bool _senhaIsValid;
   bool _tipoIsValid;
 
-  @action
   bool get isValid =>
       _nomeIsValid &&
       _cpfIsValid &&
@@ -30,7 +24,7 @@ abstract class _FormUsuarioBack with Store {
       _tipoIsValid;
 
   //diferenciar entre novo usuario ou edição de usuario
-  _FormUsuarioBack(BuildContext context) {
+  FormUsuarioBack(BuildContext context) {
     var parametro = ModalRoute.of(context).settings.arguments;
     usuario = (parametro == null) ? Usuario() : parametro;
   }

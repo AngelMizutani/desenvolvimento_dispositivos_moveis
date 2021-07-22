@@ -35,6 +35,10 @@ abstract class _ListaUsuariosBack with Store {
         .then(atualizarListaUsuarios);
   }
 
+  goToUserDetails(BuildContext context, Usuario usuario) {
+    Navigator.of(context).pushNamed(MyApp.USER_DETAILS, arguments: usuario);
+  }
+
   //excluir usuarios
   excluirUsuario(int id) {
     _service.remove(id);

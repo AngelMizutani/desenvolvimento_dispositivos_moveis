@@ -61,6 +61,9 @@ class ListaExercicios extends StatelessWidget {
                       var exercicio = lista[i];
                       return ListTile(
                         title: Text(exercicio.nome),
+                        onTap: () {
+                          _back.goToExerciseDetails(context, exercicio);
+                        },
                         subtitle: Text(exercicio.descricao),
                         trailing: Container(
                           width: 100,

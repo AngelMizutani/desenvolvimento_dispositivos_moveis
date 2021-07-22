@@ -35,6 +35,11 @@ abstract class _ListaExerciciosBack with Store {
         .then(atualizarListaExercicios);
   }
 
+  goToExerciseDetails(BuildContext context, Exercicio exercicio) {
+    Navigator.of(context)
+        .pushNamed(MyApp.EXERCISE_DETAILS, arguments: exercicio);
+  }
+
   //excluir exercício
   excluirExercicio(int id) {
     _service.remove(id);

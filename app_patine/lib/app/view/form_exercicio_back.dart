@@ -4,24 +4,18 @@ import 'package:app_patine/app/domain/entities/exercicio.dart';
 import 'package:app_patine/app/domain/services/exercicio_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mobx/mobx.dart';
 
-part 'form_exercicio_back.g.dart';
-
-class FormExercicioBack = _FormExercicioBack with _$FormExercicioBack;
-
-abstract class _FormExercicioBack with Store {
+class FormExercicioBack {
   Exercicio exercicio;
   var _service = GetIt.I.get<ExercicioService>();
   bool _nomeIsValid;
   bool _descricaoIsValid;
   bool _treinadorIsValid;
 
-  @action
   bool get isValid => _nomeIsValid && _descricaoIsValid && _treinadorIsValid;
 
   //diferenciar entre novo exercicio e edição
-  _FormExercicioBack(BuildContext context) {
+  FormExercicioBack(BuildContext context) {
     var parametro = ModalRoute.of(context).settings.arguments;
     exercicio = (parametro == null) ? Exercicio() : parametro;
   }
