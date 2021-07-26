@@ -9,18 +9,18 @@ class Connection {
     Database _db;
 
     if (_db == null) {
-      var path = join(await getDatabasesPath(), 'banco_patine');
+      var path = join(await getDatabasesPath(), 'patine_database');
       //deleteDatabase(path);
       _db = await openDatabase(path, version: 1, onCreate: (db, v) {
         db.execute(createTable);
-        db.execute(insertTreinador1);
-        db.execute(insertTreinador2);
-        db.execute(insertAprendiz1);
-        db.execute(insertAprendiz2);
-        db.execute(createTableExercicios);
-        db.execute(insertExercicio1);
-        db.execute(insertExercicio2);
-        db.execute(insertExercicio3);
+        db.execute(insertInstructor1);
+        db.execute(insertInstructor2);
+        db.execute(insertApprentice1);
+        db.execute(insertApprentice2);
+        db.execute(createTableExercises);
+        db.execute(insertExercise1);
+        db.execute(insertExercise2);
+        db.execute(insertExercise3);
       });
     }
     return _db;

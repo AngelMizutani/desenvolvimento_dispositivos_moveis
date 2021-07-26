@@ -1,20 +1,20 @@
 //@dart=2.9
 
-class Usuario {
+class User {
   int id;
-  String nome;
+  String name;
   String cpf;
   String email;
   String login;
-  String senha;
-  String tipo;
+  String password;
+  String category;
 
-  Usuario(
+  User(
       {this.id,
-      this.nome,
+      this.name,
       this.cpf,
       this.email,
       this.login,
-      this.senha,
-      this.tipo});
+      this.password,
+      this.category});
 }

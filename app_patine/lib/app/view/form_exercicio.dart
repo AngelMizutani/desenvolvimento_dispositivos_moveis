@@ -1,5 +1,5 @@
 //@dart=2.9
-import 'package:app_patine/app/view/form_exercicio_back.dart';
+import 'package:app_patine/app/view/exercise_form_back.dart';
 import 'package:flutter/material.dart';
 
 class FormExercicio extends StatelessWidget {

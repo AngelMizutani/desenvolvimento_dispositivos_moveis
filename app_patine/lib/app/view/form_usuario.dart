@@ -1,73 +1,73 @@
 //@dart=2.9
 
-import 'package:app_patine/app/view/form_usuario_back.dart';
+import 'package:app_patine/app/view/user_form_back.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class FormUsuario extends StatelessWidget {
   final _form = GlobalKey<FormState>();
 
-  Widget campoNome(FormUsuarioBack back) {
+  Widget fieldName(UserFormBack back) {
     return TextFormField(
-      validator: back.validarNomeUsuario,
-      onSaved: (valor) => back.usuario.nome = valor,
-      initialValue: back.usuario.nome,
+      validator: back.validateUserName,
+      onSaved: (value) => back.user.name = value,
+      initialValue: back.user.name,
       decoration: InputDecoration(labelText: 'Nome:'),
     );
   }
 
-  Widget campoCpf(FormUsuarioBack back) {
-    var mascara = MaskTextInputFormatter(mask: '###.###.###-##');
+  Widget fieldCpf(UserFormBack back) {
+    var mask = MaskTextInputFormatter(mask: '###.###.###-##');
     return TextFormField(
-      inputFormatters: [mascara],
+      inputFormatters: [mask],
       keyboardType: TextInputType.number,
-      validator: back.validarCpf,
-      onSaved: (valor) => back.usuario.cpf = valor,
-      initialValue: back.usuario.cpf,
+      validator: back.validateCpf,
+      onSaved: (value) => back.user.cpf = value,
+      initialValue: back.user.cpf,
       decoration:
           InputDecoration(labelText: 'CPF: ', hintText: '000.000.000-00'),
     );
   }
 
-  Widget campoEmail(FormUsuarioBack back) {
+  Widget fieldEmail(UserFormBack back) {
     return TextFormField(
-      validator: back.validarEmail,
-      onSaved: (valor) => back.usuario.email = valor,
-      initialValue: back.usuario.email,
+      validator: back.validateEmail,
+      onSaved: (value) => back.user.email = value,
+      initialValue: back.user.email,
       decoration: InputDecoration(labelText: 'Email: '),
     );
   }
 
-  Widget campoLogin(FormUsuarioBack back) {
+  Widget fieldLogin(UserFormBack back) {
     return TextFormField(
-      validator: back.validarLogin,
-      onSaved: (valor) => back.usuario.login = valor,
-      initialValue: back.usuario.login,
+      validator: back.validateLogin,
+      onSaved: (value) => back.user.login = value,
+      initialValue: back.user.login,
       decoration: InputDecoration(labelText: 'Login: '),
     );
   }
 
-  Widget campoSenha(FormUsuarioBack back) {
+  Widget fieldPassword(UserFormBack back) {
     return TextFormField(
-      validator: back.validarSenha,
-      onSaved: (valor) => back.usuario.senha = valor,
-      initialValue: back.usuario.senha,
+      validator: back.validatePassword,
+      onSaved: (value) => back.user.password = value,
+      initialValue: back.user.password,
       decoration: InputDecoration(labelText: 'Senha: '),
     );
   }
 
-  Widget campoTipo(FormUsuarioBack back) {
+  Widget fieldCategory(UserFormBack back) {
     return TextFormField(
-      validator: back.validarTipo,
-      onSaved: (valor) => back.usuario.tipo = valor,
-      initialValue: back.usuario.tipo,
+      validator: back.validateCategory,
+      onSaved: (value) => back.user.category = value,
+      initialValue: back.user.category,
       decoration: InputDecoration(labelText: 'Tipo: '),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    var _back = FormUsuarioBack(context);
+    var _back = UserFormBack(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Cadastrar usuário'),
@@ -77,7 +77,7 @@ class FormUsuario extends StatelessWidget {
                 _form.currentState.validate();
                 _form.currentState.save();
                 if (_back.isValid) {
-                  _back.salvarUsuario();
+                  _back.saveUser();
                   Navigator.of(context).pop();
                 }
               },
@@ -90,12 +90,12 @@ class FormUsuario extends StatelessWidget {
             key: _form,
             child: Column(
               children: [
-                campoNome(_back),
-                campoCpf(_back),
-                campoEmail(_back),
-                campoLogin(_back),
-                campoSenha(_back),
-                campoTipo(_back)
+                fieldName(_back),
+                fieldCpf(_back),
+                fieldEmail(_back),
+                fieldLogin(_back),
+                fieldPassword(_back),
+                fieldCategory(_back)
               ],
             )),
       ),

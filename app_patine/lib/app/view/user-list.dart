@@ -1,5 +1,4 @@
 //@dart=2.9
-import 'package:app_patine/app/domain/entities/usuario.dart';
 import 'package:app_patine/app/view/lista_usuarios_back.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';

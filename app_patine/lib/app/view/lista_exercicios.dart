@@ -1,7 +1,7 @@
 //@dart=2.9
 
-import 'package:app_patine/app/domain/entities/exercicio.dart';
-import 'package:app_patine/app/view/lista_exercicios_back.dart';
+import 'package:app_patine/app/domain/entities/exercise.dart';
+import 'package:app_patine/app/view/exercise_list_back.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
