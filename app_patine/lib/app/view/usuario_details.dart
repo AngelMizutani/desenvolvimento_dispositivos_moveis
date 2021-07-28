@@ -4,6 +4,19 @@ import 'package:app_patine/app/view/usuario_details_back.dart';
 import 'package:flutter/material.dart';
 
 class UsuarioDetails extends StatelessWidget {
+  showModalError(BuildContext context) {
+    var alert = AlertDialog(
+      title: Text('Alerta!'),
+      content: Text('Não foi possível encontrar um APP compatível!'),
+    );
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     var _back = UsuarioDetailsBack(context);
@@ -11,8 +24,10 @@ class UsuarioDetails extends StatelessWidget {
 
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
+      var width = constraints.biggest.width;
       return Scaffold(
         body: ListView(
+          padding: EdgeInsets.all(50),
           children: [
             Center(
               child: Text(
@@ -24,6 +39,17 @@ class UsuarioDetails extends StatelessWidget {
               child: ListTile(
                 title: Text('E-mail'),
                 subtitle: Text('${usuario.email}'),
+                trailing: Container(
+                  width: width / 4,
+                  child: IconButton(
+                    color: Colors.purple,
+                    icon: Icon(Icons.email),
+                    onPressed: () {
+                      _back.launchEmail(
+                          'mailto:${usuario.email}', showModalError);
+                    },
+                  ),
+                ),
               ),
             ),
             Card(
