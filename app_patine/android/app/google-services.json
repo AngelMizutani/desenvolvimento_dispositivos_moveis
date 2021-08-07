@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "378367714502",
+    "firebase_url": "https://fir-992d3.firebaseio.com",
+    "project_id": "fir-992d3",
+    "storage_bucket": "fir-992d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378367714502:android:58dc09ad48a71e908f63c7",
+        "android_client_info": {
+          "package_name": "br.com.angelicamizutani.app_patine"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378367714502-25gafjntaka69d6oduhqbhcptsprf3pv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcukWYYMc3w6Job22qi1_sDj-REU0TxvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378367714502-25gafjntaka69d6oduhqbhcptsprf3pv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
