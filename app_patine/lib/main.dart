@@ -11,17 +11,36 @@ void main() async {
 
   await Firebase.initializeApp();
 
-  FirebaseFirestore.instance.collection('usuario').doc().set({
-    'nome': 'Maria da Silva',
-    'cpf': '123.456.789-00',
-    'email': 'maria@email.com',
-    'login': 'maria_silva',
-    'senha': '123456',
-    'tipo': 'T'
+  var collection_usuario = FirebaseFirestore.instance.collection('usuario');
+
+  collection_usuario.snapshots().listen((r) {
+    print('*** Usuários ***');
+    for (var doc in r.docs) {
+      print(doc['nome']);
+    }
   });
 
-  FirebaseFirestore.instance
-      .collection('exercicio')
-      .doc()
-      .set({'nome': 'limões', 'descricao': 'desenhe circulos com os patins'});
+  var collection_exercicio = FirebaseFirestore.instance.collection('exercicio');
+
+  collection_exercicio.snapshots().listen((r) {
+    print('*** Exercícios ***');
+    for (var doc in r.docs) {
+      print('Nome: ${doc['nome']}');
+      print('Descrição: ${doc['descricao']}');
+    }
+  });
+
+  // FirebaseFirestore.instance.collection('usuario').doc().set({
+  //   'nome': 'João da Silva',
+  //   'cpf': '456.789.123-00',
+  //   'email': 'joao@email.com',
+  //   'login': 'joao_silva',
+  //   'senha': '123456',
+  //   'tipo': 'T'
+  // });
+
+  // FirebaseFirestore.instance.collection('exercicio').doc().set({
+  //   'nome': 'freio delta',
+  //   'descricao': 'faça um v invertido para diminuir a velocidade'
+  // });
 }
