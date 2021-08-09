@@ -1,7 +1,7 @@
 //@dart=2.9
 
 class Usuario {
-  int id;
+  dynamic id;
   String nome;
   String cpf;
   String email;

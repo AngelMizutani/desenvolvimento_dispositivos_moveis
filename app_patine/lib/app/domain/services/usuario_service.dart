@@ -18,7 +18,7 @@ class UsuarioService {
     _dao.save(usuario);
   }
 
-  remove(int id) {
+  remove(dynamic id) {
     _dao.remove(id);
   }
 

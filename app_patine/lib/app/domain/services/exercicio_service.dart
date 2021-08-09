@@ -15,7 +15,7 @@ class ExercicioService {
     _dao.save(exercicio);
   }
 
-  remove(int id) {
+  remove(dynamic id) {
     _dao.remove(id);
   }
 

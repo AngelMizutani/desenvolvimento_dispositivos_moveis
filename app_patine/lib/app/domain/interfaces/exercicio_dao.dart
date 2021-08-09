@@ -5,7 +5,7 @@ import 'package:app_patine/app/domain/entities/exercicio.dart';
 abstract class ExercicioDAO {
   save(Exercicio exercicio);
 
-  remove(int id);
+  remove(dynamic id);
 
   Future<List<Exercicio>> find();
 }

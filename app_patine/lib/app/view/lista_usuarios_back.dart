@@ -40,7 +40,7 @@ abstract class _ListaUsuariosBack with Store {
   }
 
   //excluir usuarios
-  excluirUsuario(int id) {
+  excluirUsuario(dynamic id) {
     _service.remove(id);
     atualizarListaUsuarios();
   }

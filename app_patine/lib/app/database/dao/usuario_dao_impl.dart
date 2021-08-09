@@ -28,7 +28,7 @@ class UsuarioDAOImpl implements UsuarioDAO {
   }
 
   @override
-  remove(int id) async {
+  remove(dynamic id) async {
     _db = await Connection.get();
     var sql = 'DELETE FROM usuario WHERE id = ?';
     _db.rawDelete(sql, [id]);

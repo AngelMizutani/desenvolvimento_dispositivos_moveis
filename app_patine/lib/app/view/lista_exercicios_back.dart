@@ -41,7 +41,7 @@ abstract class _ListaExerciciosBack with Store {
   }
 
   //excluir exercício
-  excluirExercicio(int id) {
+  excluirExercicio(dynamic id) {
     _service.remove(id);
     atualizarListaExercicios();
   }
