@@ -11,7 +11,7 @@ class ExercicioService {
   save(Exercicio exercicio) {
     validarNome(exercicio.nome);
     validarDescricao(exercicio.descricao);
-    validarTreinador(exercicio.treinadorId);
+    //validarTreinador(exercicio.treinadorId);
     _dao.save(exercicio);
   }
 

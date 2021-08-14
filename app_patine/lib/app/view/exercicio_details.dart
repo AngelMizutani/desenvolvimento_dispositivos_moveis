@@ -11,9 +11,21 @@ class ExercicioDetails extends StatelessWidget {
 
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
+      var width = constraints.biggest.width;
+      var radius = width / 3;
       return Scaffold(
         body: ListView(
+          padding: EdgeInsets.all(30),
           children: [
+            (Uri.parse(exercicio.urlImagem).isAbsolute)
+                ? CircleAvatar(
+                    backgroundImage: NetworkImage(exercicio.urlImagem),
+                    radius: radius,
+                  )
+                : CircleAvatar(
+                    child: Image.asset('imagens/patins.png'),
+                    radius: radius,
+                  ),
             Center(
               child: Text(
                 '${exercicio.nome}',

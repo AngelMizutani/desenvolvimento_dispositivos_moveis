@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
       ),
       routes: {
-        HOME: (context) => ListaUsuarios(),
+        HOME: (context) => ListaExercicios(),
         EXERCICIO: (context) => VerExercicio(),
         LISTA_EXERCICIOS: (context) => ListaExercicios(),
         LISTA_USUARIOS: (context) => ListaUsuarios(),

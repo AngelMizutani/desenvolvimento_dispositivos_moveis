@@ -18,7 +18,9 @@ class ExercicioDAOImpl implements ExercicioDAO {
           id: linha['id'],
           nome: linha['nome'],
           descricao: linha['descricao'],
-          treinadorId: linha['treinador_id']);
+          urlImagem: linha['url_imagem']
+          //treinadorId: linha['treinador_id']
+          );
     });
 
     return lista;
@@ -38,17 +40,18 @@ class ExercicioDAOImpl implements ExercicioDAO {
 
     if (exercicio.id == null) {
       sql =
-          'INSERT INTO exercicios (nome, descricao, treinador_id) VALUES (?, ?, ?)';
+          'INSERT INTO exercicios (nome, descricao, url_imagem) VALUES (?, ?, ?)';
 
       _db.rawInsert(
-          sql, [exercicio.nome, exercicio.descricao, exercicio.treinadorId]);
+          sql, [exercicio.nome, exercicio.descricao, exercicio.urlImagem]);
     } else {
       sql =
-          'UPDATE exercicios SET nome = ?, descricao = ?, treinador_id = ? WHERE id = ?';
+          'UPDATE exercicios SET nome = ?, descricao = ?, url_imagem= ? WHERE id = ?';
       _db.rawUpdate(sql, [
         exercicio.nome,
         exercicio.descricao,
-        exercicio.treinadorId,
+        exercicio.urlImagem,
+        //exercicio.treinadorId,
         exercicio.id
       ]);
     }

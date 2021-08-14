@@ -35,21 +35,24 @@ final createTableExercicios = '''
       id INTEGER NOT NULL PRIMARY KEY
       , nome VARCHAR (255) NOT NULL
       , descricao VARCHAR (1000) NOT NULL
-      , treinador_id INT NOT NULL
-      , FOREIGN KEY (treinador_id) REFERENCES usuario (id)
+      , url_imagem VARCHAR (255)
     )
 ''';
+
+// , treinador_id INT NOT NULL
+//       , FOREIGN KEY (treinador_id) REFERENCES usuario (id)
+
 final insertExercicio1 = '''
-  INSERT INTO exercicios(nome, descricao, treinador_id)
-  VALUES ('Limões', 'Desenhe círculos com os patins', 1)
+  INSERT INTO exercicios(nome, descricao, url_imagem)
+  VALUES ('Limões', 'Posicione os pés em forma de V, aplique pressão até total abertura das pernas e depois forme um V invertido com os patins', 'https://i.ytimg.com/vi/JLS56y636IY/sddefault.jpg')
 ''';
 
 final insertExercicio2 = '''
-  INSERT INTO exercicios(nome, descricao, treinador_id)
-  VALUES ('Freio em Cunha com Passos', 'Faça uma abertura de pernas com o dobro do tamanho dos ombros, e vá fechando com passos', 2)
+  INSERT INTO exercicios(nome, descricao, url_imagem)
+  VALUES ('Freio em Cunha com Passos', 'Faça uma abertura de pernas com o dobro do tamanho dos ombros, e vá fechando com passos', 'https://i.pinimg.com/originals/07/60/4f/07604f926fd39348b7d6aeb104d96437.jpg')
 ''';
 
 final insertExercicio3 = '''
-  INSERT INTO exercicios(nome, descricao, treinador_id)
-  VALUES ('Freio em T', 'Faça a posição de tesoura, com o peso 80% na perna da frente. Então vire o pé de trás transversalmente, formando um T com os patins. Arraste o patins de trás até parar por completo', 1)
+  INSERT INTO exercicios(nome, descricao, url_imagem)
+  VALUES ('Freio em T', 'Faça a posição de tesoura, com o peso 80% na perna da frente. Então vire o pé de trás transversalmente, formando um T com os patins. Arraste o patins de trás até parar por completo', 'https://i.ytimg.com/vi/DeAZogIb464/maxresdefault.jpg')
 ''';

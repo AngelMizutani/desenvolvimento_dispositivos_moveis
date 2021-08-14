@@ -4,7 +4,10 @@ class Exercicio {
   dynamic id;
   String nome;
   String descricao;
-  dynamic treinadorId;
+  String urlImagem;
+  //dynamic treinadorId;
 
-  Exercicio({this.id, this.nome, this.descricao, this.treinadorId});
+  Exercicio({this.id, this.nome, this.descricao, this.urlImagem
+      //this.treinadorId
+      });
 }

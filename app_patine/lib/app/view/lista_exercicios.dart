@@ -8,6 +8,12 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 class ListaExercicios extends StatelessWidget {
   final _back = ListaExerciciosBack();
 
+  CircleAvatar imagemExercicio(String url) {
+    return (Uri.parse(url).isAbsolute)
+        ? CircleAvatar(backgroundImage: NetworkImage(url))
+        : CircleAvatar(child: Image.asset('imagens/patins.png'));
+  }
+
   Widget iconeBotaoEditar(Function onPressed) {
     return IconButton(
         onPressed: onPressed, icon: Icon(Icons.edit), color: Colors.yellow);
@@ -60,6 +66,7 @@ class ListaExercicios extends StatelessWidget {
                     itemBuilder: (context, i) {
                       var exercicio = lista[i];
                       return ListTile(
+                        leading: imagemExercicio(exercicio.urlImagem),
                         title: Text(exercicio.nome),
                         onTap: () {
                           _back.goToExerciseDetails(context, exercicio);
