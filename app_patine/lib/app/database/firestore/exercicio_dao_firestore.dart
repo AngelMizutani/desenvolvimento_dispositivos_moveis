@@ -19,7 +19,9 @@ class ExercicioDAOFirestore implements ExercicioDAO {
             id: doc.reference.id.toString(),
             nome: doc['nome'],
             descricao: doc['descricao'],
-            treinadorId: doc['treinador_id']))
+            urlImagem: doc['urlImagem']
+            // treinadorId: doc['treinador_id']
+            ))
         .toList();
   }
 
@@ -33,7 +35,8 @@ class ExercicioDAOFirestore implements ExercicioDAO {
     exercicioCollection.doc(exercicio.id).set({
       'nome': exercicio.nome,
       'descricao': exercicio.descricao,
-      'treinadorId': exercicio.treinadorId
+      'urlImagem': exercicio.urlImagem
+      // 'treinadorId': exercicio.treinadorId
     });
   }
 }

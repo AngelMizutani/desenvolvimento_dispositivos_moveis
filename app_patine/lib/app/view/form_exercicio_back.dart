@@ -10,9 +10,10 @@ class FormExercicioBack {
   var _service = GetIt.I.get<ExercicioService>();
   bool _nomeIsValid;
   bool _descricaoIsValid;
-  bool _treinadorIsValid;
+  //bool _treinadorIsValid;
 
-  bool get isValid => _nomeIsValid && _descricaoIsValid && _treinadorIsValid;
+  // bool get isValid => _nomeIsValid && _descricaoIsValid && _treinadorIsValid;
+  bool get isValid => _nomeIsValid && _descricaoIsValid;
 
   //diferenciar entre novo exercicio e edição
   FormExercicioBack(BuildContext context) {
@@ -48,14 +49,14 @@ class FormExercicioBack {
     }
   }
 
-  String validarTreinador(String idTreinador) {
-    try {
-      _service.validarTreinador(int.parse(idTreinador));
-      _treinadorIsValid = true;
-      return null;
-    } catch (e) {
-      _treinadorIsValid = false;
-      return e.toString();
-    }
-  }
+  // String validarTreinador(String idTreinador) {
+  //   try {
+  //     _service.validarTreinador(int.parse(idTreinador));
+  //     _treinadorIsValid = true;
+  //     return null;
+  //   } catch (e) {
+  //     _treinadorIsValid = false;
+  //     return e.toString();
+  //   }
+  // }
 }

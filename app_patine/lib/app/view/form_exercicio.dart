@@ -22,15 +22,24 @@ class FormExercicio extends StatelessWidget {
     );
   }
 
-  Widget campoTreinadorId(FormExercicioBack back) {
+  Widget campoUrlImagem(FormExercicioBack back) {
     return TextFormField(
-      keyboardType: TextInputType.number,
-      validator: back.validarTreinador,
-      onSaved: (valor) => back.exercicio.treinadorId = int.parse(valor),
-      initialValue: back.exercicio.treinadorId.toString(),
-      decoration: InputDecoration(labelText: 'Id Treinador:'),
+      onSaved: (valor) => back.exercicio.urlImagem = valor,
+      initialValue: back.exercicio.urlImagem,
+      decoration: InputDecoration(
+          labelText: 'Endereço Imagem', hintText: 'http://www.site.com'),
     );
   }
+
+  // Widget campoTreinadorId(FormExercicioBack back) {
+  //   return TextFormField(
+  //     keyboardType: TextInputType.number,
+  //     validator: back.validarTreinador,
+  //     onSaved: (valor) => back.exercicio.treinadorId = int.parse(valor),
+  //     initialValue: back.exercicio.treinadorId.toString(),
+  //     decoration: InputDecoration(labelText: 'Id Treinador:'),
+  //   );
+  //}
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +68,8 @@ class FormExercicio extends StatelessWidget {
               children: [
                 campoNome(_back),
                 campoDescricao(_back),
-                campoTreinadorId(_back)
+                campoUrlImagem(_back)
+                //campoTreinadorId(_back)
               ],
             )),
       ),
