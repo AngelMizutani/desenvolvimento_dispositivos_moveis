@@ -5,6 +5,7 @@ import 'package:app_patine/app/view/form_exercicio.dart';
 import 'package:app_patine/app/view/form_usuario.dart';
 import 'package:app_patine/app/view/lista_exercicios.dart';
 import 'package:app_patine/app/view/lista_usuarios.dart';
+import 'package:app_patine/app/view/login_usuario.dart';
 import 'package:app_patine/app/view/usuario_details.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
   static const FORM_EXERCICIO = 'form-exercicio';
   static const EXERCISE_DETAILS = 'exercicio-details';
   static const USER_DETAILS = 'usuario-details';
+  static const LOGIN = 'login-usuario';
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +31,15 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
       ),
       routes: {
-        HOME: (context) => ListaExercicios(),
+        HOME: (context) => LoginUsuario(),
         EXERCICIO: (context) => VerExercicio(),
         LISTA_EXERCICIOS: (context) => ListaExercicios(),
         LISTA_USUARIOS: (context) => ListaUsuarios(),
         FORM_USUARIO: (context) => FormUsuario(),
         FORM_EXERCICIO: (context) => FormExercicio(),
         EXERCISE_DETAILS: (context) => ExercicioDetails(),
-        USER_DETAILS: (context) => UsuarioDetails()
+        USER_DETAILS: (context) => UsuarioDetails(),
+        LOGIN: (context) => LoginUsuario()
       },
     );
   }

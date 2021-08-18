@@ -1,6 +1,8 @@
 //@dart=2.9
 import 'package:app_patine/app/domain/entities/usuario.dart';
 import 'package:app_patine/app/view/lista_usuarios_back.dart';
+import 'package:app_patine/app/view/login_usuario.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -43,7 +45,16 @@ class ListaUsuarios extends StatelessWidget {
                 onPressed: () {
                   _back.irParaFormulario(context);
                 },
-                icon: Icon(Icons.add))
+                icon: Icon(Icons.add)),
+            IconButton(
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => LoginUsuario()));
+              },
+              icon: Icon(Icons.exit_to_app),
+              //child: Text('Sair')
+            )
           ],
         ),
         body: Observer(builder: (context) {
