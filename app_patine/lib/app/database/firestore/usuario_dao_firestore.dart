@@ -18,11 +18,11 @@ class UsuarioDAOFirestore implements UsuarioDAO {
         .map((doc) => Usuario(
             id: doc.reference.id.toString(),
             nome: doc['nome'],
-            cpf: doc['cpf'],
             email: doc['email'],
-            login: doc['login'],
-            senha: doc['senha'],
-            tipo: doc['tipo']))
+            likes: doc['likes'],
+            dislikes: doc['dislikes'],
+            tipo: doc['tipo'],
+            urlAvatar: doc['url_avatar']))
         .toList();
   }
 
@@ -31,15 +31,21 @@ class UsuarioDAOFirestore implements UsuarioDAO {
     usuarioCollection.doc(id).delete();
   }
 
+  //fazer a chamada de firestoreAuth
   @override
   save(Usuario usuario) {
+//firebaseAuth;
+//usuario.idAuth = firebaseAuth.uid;
+//usuario.likes = 0;
+//usuario.dislikes = 0;
+
     usuarioCollection.doc(usuario.id).set({
       'nome': usuario.nome,
-      'cpf': usuario.cpf,
       'email': usuario.email,
-      'login': usuario.login,
-      'senha': usuario.senha,
-      'tipo': usuario.tipo
+      'likes': usuario.likes,
+      'dislikes': usuario.dislikes,
+      'tipo': usuario.tipo,
+      'url_avatar': usuario.urlAvatar
     });
   }
 }

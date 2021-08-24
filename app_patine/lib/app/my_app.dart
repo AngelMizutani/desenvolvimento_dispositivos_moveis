@@ -6,6 +6,7 @@ import 'package:app_patine/app/view/form_usuario.dart';
 import 'package:app_patine/app/view/lista_exercicios.dart';
 import 'package:app_patine/app/view/lista_usuarios.dart';
 import 'package:app_patine/app/view/login_usuario.dart';
+import 'package:app_patine/app/view/tela_inicial.dart';
 import 'package:app_patine/app/view/usuario_details.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
   static const EXERCISE_DETAILS = 'exercicio-details';
   static const USER_DETAILS = 'usuario-details';
   static const LOGIN = 'login-usuario';
+  static const INICIO = 'tela-inicial';
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,8 @@ class MyApp extends StatelessWidget {
         FORM_EXERCICIO: (context) => FormExercicio(),
         EXERCISE_DETAILS: (context) => ExercicioDetails(),
         USER_DETAILS: (context) => UsuarioDetails(),
-        LOGIN: (context) => LoginUsuario()
+        LOGIN: (context) => LoginUsuario(),
+        INICIO: (context) => TelaInicial()
       },
     );
   }

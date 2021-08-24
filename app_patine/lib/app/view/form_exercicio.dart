@@ -64,13 +64,15 @@ class FormExercicio extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: Form(
             key: _form,
-            child: Column(
-              children: [
-                campoNome(_back),
-                campoDescricao(_back),
-                campoUrlImagem(_back)
-                //campoTreinadorId(_back)
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  campoNome(_back),
+                  campoDescricao(_back),
+                  campoUrlImagem(_back)
+                  //campoTreinadorId(_back)
+                ],
+              ),
             )),
       ),
     );

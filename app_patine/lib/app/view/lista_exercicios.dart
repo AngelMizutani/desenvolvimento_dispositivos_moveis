@@ -73,20 +73,23 @@ class ListaExercicios extends StatelessWidget {
                         },
                         subtitle: Text(exercicio.descricao),
                         trailing: Container(
-                          width: 100,
-                          child: Row(
+                          //width: 100,
+                          child: Column(
                             children: [
-                              iconeBotaoEditar(() {
-                                _back.irParaFormExercicio(context, exercicio);
-                              }),
-                              iconeBotaoExcluir(context, () {
-                                _back.excluirExercicio(exercicio.id);
-                                Navigator.of(context).pop();
-                              })
-                              // IconButton(
-                              //     onPressed: null, icon: Icon(Icons.thumb_up)),
-                              // IconButton(
-                              //     onPressed: null, icon: Icon(Icons.thumb_down))
+                              // iconeBotaoEditar(() {
+                              //   _back.irParaFormExercicio(context, exercicio);
+                              // }),
+                              // iconeBotaoExcluir(context, () {
+                              //   _back.excluirExercicio(exercicio.id);
+                              //   Navigator.of(context).pop();
+                              // }),
+                              IconButton(
+                                  onPressed: null, icon: Icon(Icons.thumb_up)),
+                              Text(exercicio.likes.toString()),
+                              IconButton(
+                                  onPressed: null,
+                                  icon: Icon(Icons.thumb_down)),
+                              Text(exercicio.dislikes.toString())
                             ],
                           ),
                         ),

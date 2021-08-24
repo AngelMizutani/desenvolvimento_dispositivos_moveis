@@ -1,6 +1,7 @@
 //@dart=2.9
 
 import 'package:app_patine/app/domain/entities/usuario.dart';
+import 'package:app_patine/app/domain/services/auth_usuario_service.dart';
 import 'package:app_patine/app/domain/services/usuario_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
@@ -9,19 +10,10 @@ class FormUsuarioBack {
   Usuario usuario;
   var _service = GetIt.I.get<UsuarioService>();
   bool _nomeIsValid;
-  bool _cpfIsValid;
   bool _emailIsValid;
-  bool _loginIsValid;
-  bool _senhaIsValid;
   bool _tipoIsValid;
 
-  bool get isValid =>
-      _nomeIsValid &&
-      _cpfIsValid &&
-      _emailIsValid &&
-      _loginIsValid &&
-      _senhaIsValid &&
-      _tipoIsValid;
+  bool get isValid => _nomeIsValid && _emailIsValid && _tipoIsValid;
 
   //diferenciar entre novo usuario ou edição de usuario
   FormUsuarioBack(BuildContext context) {
@@ -46,20 +38,10 @@ class FormUsuarioBack {
     }
   }
 
-  String validarCpf(String cpf) {
-    try {
-      _service.validarCpf(cpf);
-      _cpfIsValid = true;
-      return null;
-    } catch (e) {
-      _cpfIsValid = false;
-      return e.toString();
-    }
-  }
-
   String validarEmail(String email) {
     try {
       _service.validarEmail(email);
+      AuthUsuarioService.validarEmail(email: email);
       _emailIsValid = true;
       return null;
     } catch (e) {
@@ -68,24 +50,11 @@ class FormUsuarioBack {
     }
   }
 
-  String validarLogin(String login) {
-    try {
-      _service.validarLogin(login);
-      _loginIsValid = true;
-      return null;
-    } catch (e) {
-      _loginIsValid = false;
-      return e.toString();
-    }
-  }
-
   String validarSenha(String senha) {
     try {
-      _service.validarSenha(senha);
-      _senhaIsValid = true;
+      AuthUsuarioService.validarSenha(senha: senha);
       return null;
     } catch (e) {
-      _senhaIsValid = false;
       return e.toString();
     }
   }

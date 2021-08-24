@@ -69,6 +69,8 @@ class ListaUsuarios extends StatelessWidget {
                     itemCount: lista.length,
                     itemBuilder: (context, i) {
                       var usuario = lista[i];
+                      //exibe apenas os treinadores
+                      //if usuario.tipo == 'T' {}
                       return ListTile(
                         title: Text(usuario.nome),
                         onTap: () {

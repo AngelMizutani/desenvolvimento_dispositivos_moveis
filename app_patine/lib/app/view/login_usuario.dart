@@ -2,8 +2,10 @@
 
 import 'package:app_patine/app/authentication/firebase_authentication.dart';
 import 'package:app_patine/app/domain/services/auth_usuario_service.dart';
+import 'package:app_patine/app/my_app.dart';
 import 'package:app_patine/app/view/form_usuario.dart';
 import 'package:app_patine/app/view/lista_usuarios.dart';
+import 'package:app_patine/app/view/tela_inicial.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +29,7 @@ class _LoginUsuarioState extends State<LoginUsuario> {
     User user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => ListaUsuarios()));
+      Navigator.of(context).pushNamed(MyApp.INICIO, arguments: user);
     }
 
     return firebaseApp;
@@ -61,8 +62,7 @@ class _LoginUsuarioState extends State<LoginUsuario> {
           print('UID: ' + user.uid);
 
           if (user != null) {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => ListaUsuarios()));
+            Navigator.of(context).pushNamed(MyApp.INICIO, arguments: user);
           }
         }
       },
