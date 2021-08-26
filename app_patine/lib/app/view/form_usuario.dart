@@ -1,5 +1,6 @@
 //@dart=2.9
 
+import 'package:app_patine/app/my_app.dart';
 import 'package:app_patine/app/view/form_usuario_back.dart';
 import 'package:flutter/material.dart';
 
@@ -36,13 +37,14 @@ class FormUsuario extends StatelessWidget {
   Widget campoSenha(FormUsuarioBack back) {
     return TextFormField(
       validator: back.validarSenha,
-      // onSaved: (valor) => back.usuario.senha = valor,
+      onSaved: (valor) => back.usuario.senha = valor,
       decoration: InputDecoration(labelText: 'Senha: '),
     );
   }
 
   Widget campoTipo(FormUsuarioBack back) {
     return TextFormField(
+      validator: back.validarTipo,
       onSaved: (valor) => back.usuario.tipo = valor,
       initialValue: back.usuario.tipo,
       decoration: InputDecoration(labelText: 'Tipo: '),
@@ -52,7 +54,6 @@ class FormUsuario extends StatelessWidget {
   Widget campoUrlAvatar(FormUsuarioBack back) {
     return TextFormField(
       onSaved: (valor) => back.usuario.urlAvatar = valor,
-      //initialValue: back.usuario.login,
       decoration: InputDecoration(
           labelText: 'Endereço Avatar', hintText: 'http://www.site.com'),
     );

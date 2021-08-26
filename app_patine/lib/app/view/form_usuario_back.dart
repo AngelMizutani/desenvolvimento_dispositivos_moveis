@@ -11,9 +11,11 @@ class FormUsuarioBack {
   var _service = GetIt.I.get<UsuarioService>();
   bool _nomeIsValid;
   bool _emailIsValid;
+  bool _senhaIsValid;
   bool _tipoIsValid;
 
-  bool get isValid => _nomeIsValid && _emailIsValid && _tipoIsValid;
+  bool get isValid =>
+      _nomeIsValid && _emailIsValid && _senhaIsValid && _tipoIsValid;
 
   //diferenciar entre novo usuario ou edição de usuario
   FormUsuarioBack(BuildContext context) {
@@ -53,8 +55,10 @@ class FormUsuarioBack {
   String validarSenha(String senha) {
     try {
       AuthUsuarioService.validarSenha(senha: senha);
+      _senhaIsValid = true;
       return null;
     } catch (e) {
+      _senhaIsValid = false;
       return e.toString();
     }
   }

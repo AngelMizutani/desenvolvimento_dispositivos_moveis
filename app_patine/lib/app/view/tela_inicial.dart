@@ -1,3 +1,6 @@
+//@dart=2.9
+import 'package:app_patine/app/domain/entities/usuario.dart';
+import 'package:app_patine/app/domain/services/usuario_service.dart';
 import 'package:app_patine/app/my_app.dart';
 import 'package:app_patine/app/view/tela_inicial_back.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -34,7 +37,7 @@ class TelaInicial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _back = TelaInicialBack(context);
-    User user = _back.user;
+    Usuario usuario = _back.usuario;
 
     return Scaffold(
         appBar: AppBar(
@@ -53,7 +56,7 @@ class TelaInicial extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              textoBoasVindas(user.uid.toString()),
+              textoBoasVindas(usuario.nome),
               botaoTreinadores(),
               botaoExercicios()
             ],

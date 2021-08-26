@@ -1,12 +1,15 @@
 //@dart = 2.9
 
+import 'package:app_patine/app/database/firestore/usuario_dao_firestore.dart';
 import 'package:app_patine/app/domain/entities/usuario.dart';
 import 'package:app_patine/app/domain/exception/domain_layer_exception.dart';
 import 'package:app_patine/app/domain/interfaces/usuario_dao.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
 class UsuarioService {
   var _dao = GetIt.I.get<UsuarioDAO>();
+  var _daoFirestore = UsuarioDAOFirestore();
 
   save(Usuario usuario) {
     validarNome(usuario.nome);
@@ -21,6 +24,10 @@ class UsuarioService {
 
   Future<List<Usuario>> find() {
     return _dao.find();
+  }
+
+  Future<Usuario> getUsuario(User user) async {
+    return _daoFirestore.getDadosUsuarioLogado(user);
   }
 
   // o nome deve obrigatório e ter no mínimo 3 e no máximo 255 caracteres

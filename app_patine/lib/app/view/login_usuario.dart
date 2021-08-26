@@ -1,7 +1,9 @@
 //@dart=2.9
 
 import 'package:app_patine/app/authentication/firebase_authentication.dart';
+import 'package:app_patine/app/domain/entities/usuario.dart';
 import 'package:app_patine/app/domain/services/auth_usuario_service.dart';
+import 'package:app_patine/app/domain/services/usuario_service.dart';
 import 'package:app_patine/app/my_app.dart';
 import 'package:app_patine/app/view/form_usuario.dart';
 import 'package:app_patine/app/view/lista_usuarios.dart';
@@ -59,7 +61,6 @@ class _LoginUsuarioState extends State<LoginUsuario> {
         if (_formKey.currentState.validate()) {
           User user = await FirebaseAuthentication.signInUsingEmailPassword(
               email: _emailController.text, password: _senhaController.text);
-          print('UID: ' + user.uid);
 
           if (user != null) {
             Navigator.of(context).pushNamed(MyApp.INICIO, arguments: user);
@@ -76,8 +77,7 @@ class _LoginUsuarioState extends State<LoginUsuario> {
   Widget botaoRegistrar() {
     return ElevatedButton(
       onPressed: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => FormUsuario()));
+        Navigator.of(context).pushNamed(MyApp.FORM_USUARIO);
       },
       child: Text(
         'Registrar',

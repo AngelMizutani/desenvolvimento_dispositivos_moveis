@@ -18,6 +18,7 @@ class UsuarioDAOImpl implements UsuarioDAO {
           id: linha['id'],
           nome: linha['nome'],
           email: linha['email'],
+          senha: linha['senha'],
           likes: linha['likes'],
           dislikes: linha['dislikes'],
           tipo: linha['tipo'],
@@ -41,10 +42,11 @@ class UsuarioDAOImpl implements UsuarioDAO {
 
     if (usuario.id == null) {
       sql =
-          'INSERT INTO usuario (nome, email, likes, dislikes, tipo, url_avatar) VALUES (?, ?, ?, ?, ?, ?)';
+          'INSERT INTO usuario (nome, email, senha, likes, dislikes, tipo, url_avatar) VALUES (?, ?, ?, ?, ?, ?, ?)';
       _db.rawInsert(sql, [
         usuario.nome,
         usuario.email,
+        usuario.senha,
         usuario.likes,
         usuario.dislikes,
         usuario.tipo,
@@ -52,10 +54,11 @@ class UsuarioDAOImpl implements UsuarioDAO {
       ]);
     } else {
       sql =
-          'UPDATE usuario SET nome = ?, email = ?, likes = ?, dislikes = ?, tipo = ?, url_avatar = ? WHERE id = ?';
+          'UPDATE usuario SET nome = ?, email = ?, senha = ?, likes = ?, dislikes = ?, tipo = ?, url_avatar = ? WHERE id = ?';
       _db.rawUpdate(sql, [
         usuario.nome,
         usuario.email,
+        usuario.senha,
         usuario.likes,
         usuario.dislikes,
         usuario.tipo,
