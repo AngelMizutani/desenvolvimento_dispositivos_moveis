@@ -1,13 +1,15 @@
 //@dart=2.9
 import 'package:app_patine/app/domain/entities/usuario.dart';
 import 'package:app_patine/app/view/lista_usuarios_back.dart';
-import 'package:app_patine/app/view/login_usuario.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class ListaUsuarios extends StatelessWidget {
-  final _back = ListaUsuariosBack();
+  CircleAvatar imagemUsuario(String url) {
+    return (Uri.parse(url).isAbsolute)
+        ? CircleAvatar(backgroundImage: NetworkImage(url))
+        : CircleAvatar(child: Image.asset('imagens/patins.png'));
+  }
 
   Widget iconeBotaoEditar(Function onPressed) {
     return IconButton(
@@ -35,26 +37,54 @@ class ListaUsuarios extends StatelessWidget {
     );
   }
 
+  Widget exibirContainer(
+      Usuario usuario, ListaUsuariosBack back, Usuario treinador) {
+    if (usuario.tipo == "A") {
+      return Container(
+          width: 120,
+          child: Row(
+            children: [
+              // iconeBotaoEditar(() {
+              //   _back.irParaFormulario(context, treinador);
+              // }),
+              // iconeBotaoExcluir(context, () {
+              //   _back.excluirUsuario(treinador.id);
+              //   Navigator.of(context).pop();
+              // })
+              Row(children: [
+                IconButton(
+                    onPressed: () => back.aumentarLikes(treinador),
+                    icon: Icon(Icons.thumb_up)),
+                Text(treinador.likes.toString()),
+              ]),
+              Row(
+                children: [
+                  IconButton(
+                      onPressed: () => back.aumentarDislikes(treinador),
+                      icon: Icon(Icons.thumb_down)),
+                  Text(treinador.dislikes.toString())
+                ],
+              )
+            ],
+          ));
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
+    var _back = ListaUsuariosBack(context);
+    Usuario usuario = _back.usuario;
+
     return Scaffold(
         appBar: AppBar(
-          title: Text('Lista de Usuários'),
+          title: Text('Lista de Treinadores'),
           actions: [
-            IconButton(
-                onPressed: () {
-                  _back.irParaFormulario(context);
-                },
-                icon: Icon(Icons.add)),
-            IconButton(
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => LoginUsuario()));
-              },
-              icon: Icon(Icons.exit_to_app),
-              //child: Text('Sair')
-            )
+            // IconButton(
+            //     onPressed: () {
+            //       _back.irParaFormulario(context);
+            //     },
+            //     icon: Icon(Icons.add)),
           ],
         ),
         body: Observer(builder: (context) {
@@ -68,38 +98,22 @@ class ListaUsuarios extends StatelessWidget {
                   return ListView.builder(
                     itemCount: lista.length,
                     itemBuilder: (context, i) {
-                      var usuario = lista[i];
+                      var treinador = lista[i];
                       //exibe apenas os treinadores
-                      //if usuario.tipo == 'T' {}
-                      return ListTile(
-                        title: Text(usuario.nome),
-                        onTap: () {
-                          _back.goToUserDetails(context, usuario);
-                        },
-                        subtitle: Text(
-                            usuario.tipo == 'A' ? 'Aprendiz' : 'Treinador'),
-                        trailing: Container(
-                            width: 100,
-                            child: Row(
-                              children: [
-                                iconeBotaoEditar(() {
-                                  _back.irParaFormulario(context, usuario);
-                                }),
-                                iconeBotaoExcluir(context, () {
-                                  _back.excluirUsuario(usuario.id);
-                                  Navigator.of(context).pop();
-                                })
-                                /*
-                                IconButton(
-                                    onPressed: null,
-                                    icon: Icon(Icons.thumb_up)),
-                                IconButton(
-                                    onPressed: null,
-                                    icon: Icon(Icons.thumb_down))
-                                    */
-                              ],
-                            )),
-                      );
+                      if (treinador.tipo == 'T') {
+                        return ListTile(
+                            leading: imagemUsuario(treinador.urlAvatar),
+                            title: Text(treinador.nome),
+                            onTap: () {
+                              _back.goToUserDetails(context, treinador);
+                            },
+                            subtitle: Text(treinador.tipo == 'A'
+                                ? 'Aprendiz'
+                                : 'Treinador'),
+                            trailing:
+                                exibirContainer(usuario, _back, treinador));
+                      }
+                      return null;
                     },
                   );
                 }

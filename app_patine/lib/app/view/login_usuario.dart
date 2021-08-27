@@ -1,13 +1,8 @@
 //@dart=2.9
 
 import 'package:app_patine/app/authentication/firebase_authentication.dart';
-import 'package:app_patine/app/domain/entities/usuario.dart';
 import 'package:app_patine/app/domain/services/auth_usuario_service.dart';
-import 'package:app_patine/app/domain/services/usuario_service.dart';
 import 'package:app_patine/app/my_app.dart';
-import 'package:app_patine/app/view/form_usuario.dart';
-import 'package:app_patine/app/view/lista_usuarios.dart';
-import 'package:app_patine/app/view/tela_inicial.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -48,6 +43,7 @@ class _LoginUsuarioState extends State<LoginUsuario> {
 
   Widget campoSenha() {
     return TextFormField(
+      obscureText: true,
       controller: _senhaController,
       focusNode: _focusSenha,
       validator: (valor) => AuthUsuarioService.validarSenha(senha: valor),

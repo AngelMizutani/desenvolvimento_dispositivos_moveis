@@ -1,13 +1,9 @@
 //@dart=2.9
 
-import 'package:app_patine/app/authentication/firebase_authentication.dart';
 import 'package:app_patine/app/domain/entities/usuario.dart';
 import 'package:app_patine/app/domain/interfaces/usuario_dao.dart';
-import 'package:app_patine/app/my_app.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:path/path.dart';
 
 class UsuarioDAOFirestore implements UsuarioDAO {
   CollectionReference usuarioCollection;
@@ -80,5 +76,27 @@ class UsuarioDAOFirestore implements UsuarioDAO {
     usuario.urlAvatar = urlAvatar;
 
     return usuario;
+  }
+
+  aumentarLikes(Usuario usuario) {
+    usuarioCollection.doc(usuario.id).set({
+      'nome': usuario.nome,
+      'email': usuario.email,
+      'likes': usuario.likes + 1,
+      'dislikes': usuario.dislikes,
+      'tipo': usuario.tipo,
+      'url_avatar': usuario.urlAvatar
+    });
+  }
+
+  aumentarDislikes(Usuario usuario) {
+    usuarioCollection.doc(usuario.id).set({
+      'nome': usuario.nome,
+      'email': usuario.email,
+      'likes': usuario.likes,
+      'dislikes': usuario.dislikes + 1,
+      'tipo': usuario.tipo,
+      'url_avatar': usuario.urlAvatar
+    });
   }
 }

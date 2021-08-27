@@ -11,6 +11,11 @@ class ExercicioDAOFirestore implements ExercicioDAO {
     exercicioCollection = FirebaseFirestore.instance.collection('exercicio');
   }
 
+  // collection.snapshots().listen((r) {
+  //   result = r;
+  //   print(r.docs[0]['name']);
+  // });
+
   @override
   Future<List<Exercicio>> find() async {
     var result = await exercicioCollection.get();
@@ -41,6 +46,26 @@ class ExercicioDAOFirestore implements ExercicioDAO {
       'likes': exercicio.likes,
       'dislikes': exercicio.dislikes
       // 'treinadorId': exercicio.treinadorId
+    });
+  }
+
+  aumentarLikes(Exercicio exercicio) {
+    exercicioCollection.doc(exercicio.id).set({
+      'nome': exercicio.nome,
+      'descricao': exercicio.descricao,
+      'urlImagem': exercicio.urlImagem,
+      'likes': exercicio.likes + 1,
+      'dislikes': exercicio.dislikes
+    });
+  }
+
+  aumentarDislikes(Exercicio exercicio) {
+    exercicioCollection.doc(exercicio.id).set({
+      'nome': exercicio.nome,
+      'descricao': exercicio.descricao,
+      'urlImagem': exercicio.urlImagem,
+      'likes': exercicio.likes,
+      'dislikes': exercicio.dislikes + 1
     });
   }
 }

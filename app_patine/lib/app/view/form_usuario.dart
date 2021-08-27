@@ -1,17 +1,7 @@
 //@dart=2.9
 
-import 'package:app_patine/app/my_app.dart';
 import 'package:app_patine/app/view/form_usuario_back.dart';
 import 'package:flutter/material.dart';
-
-/*
-TO-DO:
-- verificar como passar valor de idAuth da autenticação para o BD (String idAuth?) => user.uid
-- nos scripts = setar likes e dislikes com valor inicial 0
-- verificar no back a questão do urlAvatar
-- se o usuario já estiver logado, não pode exibir os campos de email e senha (importar Firebase Auth)
-
-*/
 
 class FormUsuario extends StatelessWidget {
   final _form = GlobalKey<FormState>();

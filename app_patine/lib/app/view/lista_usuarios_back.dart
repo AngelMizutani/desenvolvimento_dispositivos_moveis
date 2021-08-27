@@ -12,6 +12,8 @@ part 'lista_usuarios_back.g.dart';
 class ListaUsuariosBack = _ListaUsuariosBack with _$ListaUsuariosBack;
 
 abstract class _ListaUsuariosBack with Store {
+  BuildContext context;
+  Usuario usuario;
   var _service = GetIt.I.get<UsuarioService>();
 
   //exibir lista de usuários
@@ -24,7 +26,8 @@ abstract class _ListaUsuariosBack with Store {
     lista = _service.find();
   }
 
-  _ListaUsuariosBack() {
+  _ListaUsuariosBack(this.context) {
+    usuario = ModalRoute.of(context).settings.arguments;
     atualizarListaUsuarios();
   }
 
@@ -42,6 +45,16 @@ abstract class _ListaUsuariosBack with Store {
   //excluir usuarios
   excluirUsuario(dynamic id) {
     _service.remove(id);
+    atualizarListaUsuarios();
+  }
+
+  aumentarLikes(Usuario usuario) {
+    _service.aumentarLikes(usuario);
+    atualizarListaUsuarios();
+  }
+
+  aumentarDislikes(Usuario usuario) {
+    _service.aumentarDislikes(usuario);
     atualizarListaUsuarios();
   }
 }

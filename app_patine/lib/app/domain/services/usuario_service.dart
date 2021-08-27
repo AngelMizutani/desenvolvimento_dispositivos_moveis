@@ -18,6 +18,14 @@ class UsuarioService {
     _dao.save(usuario);
   }
 
+  aumentarLikes(Usuario usuario) {
+    _daoFirestore.aumentarLikes(usuario);
+  }
+
+  aumentarDislikes(Usuario usuario) {
+    _daoFirestore.aumentarDislikes(usuario);
+  }
+
   remove(dynamic id) {
     _dao.remove(id);
   }

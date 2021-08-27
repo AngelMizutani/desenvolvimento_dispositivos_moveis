@@ -25,10 +25,20 @@ class UsuarioDetails extends StatelessWidget {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
       var width = constraints.biggest.width;
+      var radius = width / 3;
       return Scaffold(
         body: ListView(
           padding: EdgeInsets.all(50),
           children: [
+            (Uri.parse(usuario.urlAvatar).isAbsolute)
+                ? CircleAvatar(
+                    backgroundImage: NetworkImage(usuario.urlAvatar),
+                    radius: radius,
+                  )
+                : CircleAvatar(
+                    child: Image.asset('imagens/patins.png'),
+                    radius: radius,
+                  ),
             Center(
               child: Text(
                 '${usuario.nome}',

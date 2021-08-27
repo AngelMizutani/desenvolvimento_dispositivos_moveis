@@ -6,11 +6,11 @@ class VerExercicio extends StatefulWidget {
 }
 
 class _VerExercicioState extends State<VerExercicio> {
-  var qtde_likes = 0;
+  var qtdeLikes = 0;
 
   void _aumentarLikes() {
     setState(() {
-      qtde_likes++;
+      qtdeLikes++;
     });
   }
 
@@ -29,7 +29,7 @@ class _VerExercicioState extends State<VerExercicio> {
               style: TextStyle(fontSize: 20),
             ),
             Text(
-              '$qtde_likes',
+              '$qtdeLikes',
               style: TextStyle(fontSize: 40),
             ),
             Text(

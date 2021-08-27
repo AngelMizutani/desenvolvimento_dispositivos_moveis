@@ -1,5 +1,6 @@
 //@dart = 2.9
 
+import 'package:app_patine/app/database/firestore/exercicio_dao_firestore.dart';
 import 'package:app_patine/app/domain/entities/exercicio.dart';
 import 'package:app_patine/app/domain/exception/domain_layer_exception.dart';
 import 'package:app_patine/app/domain/interfaces/exercicio_dao.dart';
@@ -7,12 +8,21 @@ import 'package:get_it/get_it.dart';
 
 class ExercicioService {
   var _dao = GetIt.I.get<ExercicioDAO>();
+  var _daoFirestore = ExercicioDAOFirestore();
 
   save(Exercicio exercicio) {
     validarNome(exercicio.nome);
     validarDescricao(exercicio.descricao);
     //validarTreinador(exercicio.treinadorId);
     _dao.save(exercicio);
+  }
+
+  aumentarLikes(Exercicio exercicio) {
+    _daoFirestore.aumentarLikes(exercicio);
+  }
+
+  aumentarDislikes(Exercicio exercicio) {
+    _daoFirestore.aumentarDislikes(exercicio);
   }
 
   remove(dynamic id) {

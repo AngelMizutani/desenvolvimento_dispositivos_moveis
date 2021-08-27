@@ -1,6 +1,7 @@
 //@dart=2.9
 
 import 'package:app_patine/app/domain/entities/exercicio.dart';
+import 'package:app_patine/app/domain/entities/usuario.dart';
 import 'package:app_patine/app/domain/services/exercicio_service.dart';
 import 'package:app_patine/app/my_app.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,6 +13,8 @@ part 'lista_exercicios_back.g.dart';
 class ListaExerciciosBack = _ListaExerciciosBack with _$ListaExerciciosBack;
 
 abstract class _ListaExerciciosBack with Store {
+  BuildContext context;
+  Usuario usuario;
   var _service = GetIt.I.get<ExercicioService>();
 
   //exibir lista de exercicios
@@ -24,7 +27,8 @@ abstract class _ListaExerciciosBack with Store {
     lista = _service.find();
   }
 
-  _ListaExerciciosBack() {
+  _ListaExerciciosBack(this.context) {
+    usuario = ModalRoute.of(context).settings.arguments;
     atualizarListaExercicios();
   }
 
@@ -43,6 +47,16 @@ abstract class _ListaExerciciosBack with Store {
   //excluir exercício
   excluirExercicio(dynamic id) {
     _service.remove(id);
+    atualizarListaExercicios();
+  }
+
+  aumentarLikes(Exercicio exercicio) {
+    _service.aumentarLikes(exercicio);
+    atualizarListaExercicios();
+  }
+
+  aumentarDislikes(Exercicio exercicio) {
+    _service.aumentarDislikes(exercicio);
     atualizarListaExercicios();
   }
 }
