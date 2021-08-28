@@ -113,7 +113,7 @@ class ListaUsuarios extends StatelessWidget {
                             trailing:
                                 exibirContainer(usuario, _back, treinador));
                       }
-                      return null;
+                      return Text('');
                     },
                   );
                 }

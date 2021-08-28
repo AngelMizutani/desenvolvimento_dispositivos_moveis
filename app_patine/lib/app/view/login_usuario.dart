@@ -65,7 +65,7 @@ class _LoginUsuarioState extends State<LoginUsuario> {
       },
       child: Text(
         'Entrar',
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: Colors.white, fontSize: 24),
       ),
     );
   }
@@ -77,7 +77,7 @@ class _LoginUsuarioState extends State<LoginUsuario> {
       },
       child: Text(
         'Registrar',
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: Colors.white, fontSize: 24),
       ),
     );
   }

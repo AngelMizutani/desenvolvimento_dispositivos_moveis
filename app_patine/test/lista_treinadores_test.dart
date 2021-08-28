@@ -9,5 +9,7 @@ void main() {
     await tester.pumpWidget(ListaTreinadores());
 
     expect(find.byType(ListView), findsOneWidget);
+
+    expect(find.text('Lista de Treinadores'), findsOneWidget);
   });
 }
