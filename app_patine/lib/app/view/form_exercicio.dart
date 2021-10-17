@@ -53,8 +53,7 @@ class FormExercicio extends StatelessWidget {
                 _form.currentState.validate();
                 _form.currentState.save();
                 if (_back.isValid) {
-                  _back.salvarExercicio();
-                  Navigator.of(context).pop();
+                  _back.salvarExercicio(context);
                 }
               },
               icon: Icon(Icons.save))

@@ -8,15 +8,15 @@ import 'package:get_it/get_it.dart';
 class ExercicioService {
   var _dao = GetIt.I.get<ExercicioDAO>();
 
-  save(Exercicio exercicio) {
+  save(Exercicio exercicio) async {
     validarNome(exercicio.nome);
     validarDescricao(exercicio.descricao);
     //validarTreinador(exercicio.treinadorId);
-    _dao.save(exercicio);
+    await _dao.save(exercicio);
   }
 
-  remove(dynamic id) {
-    _dao.remove(id);
+  remove(dynamic id) async {
+    await _dao.remove(id);
   }
 
   Future<List<Exercicio>> find() {

@@ -22,8 +22,9 @@ class FormExercicioBack {
   }
 
   //salvar
-  salvarExercicio() async {
+  salvarExercicio(BuildContext context) async {
     await _service.save(exercicio);
+    Navigator.of(context).pop();
   }
 
   //validações

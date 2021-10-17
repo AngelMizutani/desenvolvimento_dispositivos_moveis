@@ -80,8 +80,7 @@ class ListaExercicios extends StatelessWidget {
                                 _back.irParaFormExercicio(context, exercicio);
                               }),
                               iconeBotaoExcluir(context, () {
-                                _back.excluirExercicio(exercicio.id);
-                                Navigator.of(context).pop();
+                                _back.excluirExercicio(exercicio.id, context);
                               })
                               // IconButton(
                               //     onPressed: null, icon: Icon(Icons.thumb_up)),

@@ -41,8 +41,9 @@ abstract class _ListaExerciciosBack with Store {
   }
 
   //excluir exercício
-  excluirExercicio(dynamic id) {
-    _service.remove(id);
+  excluirExercicio(dynamic id, BuildContext context) async {
+    await _service.remove(id);
     atualizarListaExercicios();
+    Navigator.of(context).pop();
   }
 }
