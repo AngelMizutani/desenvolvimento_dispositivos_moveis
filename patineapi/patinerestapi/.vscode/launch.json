@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PatinerestapiApplication<patinerestapi>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.patine.patinerestapi.PatinerestapiApplication",
+            "projectName": "patinerestapi",
+            "args": ""
+        }
+    ]
+}

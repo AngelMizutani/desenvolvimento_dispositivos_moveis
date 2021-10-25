@@ -1,0 +1,80 @@
+<Gerenciador>:
+    Menu:
+        name: 'menu'
+    ListaExercicios:
+        name: 'listaExercicios'
+    # FormExercicio:
+    #     name: 'formExercicio'
+    # DetalheExercicio:
+    #     name: 'detalheExercicio'
+
+<Menu>:
+    BoxLayout:
+        orientation: 'vertical'
+        # padding: 200
+        # spacing: 50    
+        Button:
+            text: 'Exercicios'
+            on_release: app.root.current = 'listaExercicios'
+        Button:
+            text: 'Adicionar'
+        Button:
+            text: 'Sair'
+            on_release: app.stop()
+
+<ListaExercicios>:
+    BoxLayout:
+        orientation: 'vertical'
+        ActionBar:
+            ActionPrevious:
+                title: 'Exercícios'
+                on_release: app.root.current = 'menu'
+            ActionView:
+                ActionButton:
+                    text: 'Add'
+        ScrollView:
+            BoxLayout:
+                id: box_exercicio
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height 
+
+        BoxLayout:
+            size_hint_y: None
+            height: 60
+            TextInput:
+                id: texto_nome
+            Button:
+                text: '+'
+                size_hint_x: None
+                width: 60
+                on_release: root.addWidget()   
+
+<Exercicio>:
+    size_hint_y: None
+    height: 200
+    Label:
+        id: nome_exercicio
+        font_size: 25
+    Button:
+        text: 'x'
+        size_hint_x: None
+        width: 60
+        on_release: app.root.get_screen('listaExercicios').ids.box_exercicio.remove_widget(root)
+
+# <FormExercicio>:
+#     BoxLayout:
+#         orientation: 'vertical'
+#         ActionBar:
+#             ActionPrevious:
+#                 title: 'Adicionar Exercício'
+#                 # on_release: app.root.current = 'listaExercicios'
+#         ActionButton:
+#             text: 'Salvar'
+
+# <DetalheExercicio>:
+#     BoxLayout:
+#         orientation: 'vertical'
+#     ActionBar:
+#             ActionPrevious:
+#                 title: 'Detalhe'
