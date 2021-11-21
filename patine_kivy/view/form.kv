@@ -1,0 +1,57 @@
+<Form>:
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_y:None
+        padding: 20
+        ActionBar:
+            ActionView:
+                ActionPrevious:
+                    title: 'Add Exercicio'
+                    on_release: app.root.current = 'exercicios'
+                ActionButton:
+                    text: 'Salvar'
+                    on_release: app.root.current = 'exercicios'
+                ActionButton:
+                    text: 'Sair'
+                    on_release: app.stop()
+        
+        BoxLayout:
+            orientation:'vertical'
+            Label:
+                text: 'Exercício'
+                text_size: 750, None
+                halign: 'left'
+                size_hint_y: None
+                height: 80
+            TextInput:
+                id: texto_exercicio
+                size_hint_y: None
+                height: 80
+            Label:
+                text: 'Descrição'
+                text_size: 750, None
+                halign: 'left'
+                size_hint_y: None
+                height: 80
+            TextInput:
+                id: descricao
+                size_hint_y: None
+                height: 80
+            Label:
+                text: 'Url Imagem'
+                text_size: 750, None
+                halign: 'left'
+                size_hint_y: None
+                height: 80
+            TextInput:
+                id: urlImagem
+                size_hint_y: None
+                height: 80
+        Button:
+            size_hint_y: None
+            margin: 10
+            height: 100
+            text: 'Adicionar exercício'
+            # on_release: 
+            #     root.salvarExercicio()
+            #     app.root.current = 'exercicios'

@@ -1,0 +1,105 @@
+<Gerenciador>:
+    TelaExercicios:
+        name: 'exercicios'
+    
+    Form:
+        name: 'form'
+
+# <Exercicios>:
+#     BoxLayout:
+#         orientation: 'vertical'
+#         ActionBar:
+#             ActionView:
+#                 ActionPrevious:
+#                     title: 'Exercicios'
+#                 ActionButton:
+#                     text: 'Add'
+#                     on_release: app.root.current = 'form'
+#                 ActionButton:
+#                     text: 'Sair'
+#                     on_release: app.stop()
+#         ScrollView:
+#             BoxLayout:
+#                 id: box
+#                 orientation:'vertical'
+#                 size_hint_y: None
+#                 height: self.minimum_height
+
+# <Exercicio>:
+#     size_hint_y: None
+#     height:200
+#     Label:
+#         id: label_nome
+#         font_size: 30
+#     Label:
+#         id: label_descricao
+#         font_size: 20
+#     # Image:
+#     #     source: 'https://cdn.pixabay.com/photo/2018/09/16/10/14/roller-skate-3681029_960_720.png'
+#     #     size_hint_y: None
+#     #     height: 100
+#     #     allow_stretch: True
+#     Button:
+#         text: 'X'
+#         size_hint_x: None
+#         width: 60
+#         # on_release: app.root.get_screen('exercicios').ids.box.remove_widget(root)
+
+# <Form>:
+#     BoxLayout:
+#         orientation: 'vertical'
+#         size_hint_y:None
+#         padding: 20
+#         ActionBar:
+#             ActionView:
+#                 ActionPrevious:
+#                     title: 'Add Exercicio'
+#                     on_release: app.root.current = 'exercicios'
+#                 ActionButton:
+#                     text: 'Salvar'
+#                     on_release: app.root.current = 'exercicios'
+#                 ActionButton:
+#                     text: 'Sair'
+#                     on_release: app.stop()
+        
+#         BoxLayout:
+#             orientation:'vertical'
+#             Label:
+#                 text: 'Exercício'
+#                 text_size: 750, None
+#                 halign: 'left'
+#                 size_hint_y: None
+#                 height: 80
+#             TextInput:
+#                 id: texto_exercicio
+#                 size_hint_y: None
+#                 height: 80
+#             Label:
+#                 text: 'Descrição'
+#                 text_size: 750, None
+#                 halign: 'left'
+#                 size_hint_y: None
+#                 height: 80
+#             TextInput:
+#                 id: descricao
+#                 size_hint_y: None
+#                 height: 80
+#             Label:
+#                 text: 'Url Imagem'
+#                 text_size: 750, None
+#                 halign: 'left'
+#                 size_hint_y: None
+#                 height: 80
+#             TextInput:
+#                 id: urlImagem
+#                 size_hint_y: None
+#                 height: 80
+#         Button:
+#             size_hint_y: None
+#             margin: 10
+#             height: 100
+#             text: 'Adicionar exercício'
+#             # on_release: 
+#             #     root.salvarExercicio()
+#             #     app.root.current = 'exercicios'
+
